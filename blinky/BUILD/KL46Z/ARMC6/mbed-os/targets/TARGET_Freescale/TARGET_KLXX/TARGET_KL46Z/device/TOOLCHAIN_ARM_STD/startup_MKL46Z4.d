@@ -1,0 +1,3 @@
+BUILD/KL46Z/ARMC6/mbed-os/targets/TARGET_Freescale/TARGET_KLXX/TARGET_KL46Z/device/TOOLCHAIN_ARM_STD/startup_MKL46Z4.o: \
+  mbed-os/targets/TARGET_Freescale/TARGET_KLXX/TARGET_KL46Z/device/TOOLCHAIN_ARM_STD/startup_MKL46Z4.S \
+  BUILD/KL46Z/ARMC6/mbed_config.h
