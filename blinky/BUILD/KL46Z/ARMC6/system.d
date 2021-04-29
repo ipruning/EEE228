@@ -1,5 +1,5 @@
-BUILD/KL46Z/ARMC6/main.o: main.cpp BUILD/KL46Z/ARMC6/mbed_config.h \
-  SLCD/SLCD.h mbed-os/mbed.h \
+BUILD/KL46Z/ARMC6/system.o: system.cpp BUILD/KL46Z/ARMC6/mbed_config.h \
+  system.h SLCD/SLCD.h mbed-os/mbed.h \
   mbed-os/platform/include/platform/mbed_version.h \
   mbed-os/rtos/include/rtos/rtos.h \
   mbed-os/rtos/include/rtos/internal/mbed_rtos_storage.h \
@@ -196,5 +196,4 @@ BUILD/KL46Z/ARMC6/main.o: main.cpp BUILD/KL46Z/ARMC6/mbed_config.h \
   mbed-os/platform/include/platform/ScopedRamExecutionLock.h \
   mbed-os/platform/include/platform/mbed_stats.h \
   mbed-os/platform/include/platform/Stream.h \
-  mbed-os/platform/include/platform/FileLike.h system.h my_define.h \
-  driver.h
+  mbed-os/platform/include/platform/FileLike.h
