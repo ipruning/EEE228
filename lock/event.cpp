@@ -26,8 +26,9 @@ void ScanColumn(void)
     } // initialise this function
 }
 
-void GetInput(int * input)
+char GetInput(void)
 {
+    int input;
     digital_out_00.write(column_1); // write column_1 into d0 and output it to the keyboard
     digital_out_01.write(column_2);
     digital_out_02.write(column_3);
@@ -36,31 +37,30 @@ void GetInput(int * input)
     row_3 = digital_in_02.read();
     row_4 = digital_in_03.read();
     if (column_3 == 0 && row_4 == 0)
-        * input = 1; // 1
+        input = '1';
     else if (column_2 == 0 && row_4 == 0)
-        * input = 2; // 2
+        input = '2';
     else if (column_1 == 0 && row_4 == 0)
-        * input = 3; // 3
+        input = '3';
     else if (column_3 == 0 && row_3 == 0)
-        * input = 4; // 4
+        input = '4';
     else if (column_2 == 0 && row_3 == 0)
-        * input = 5; // 5
+        input = '5';
     else if (column_1 == 0 && row_3 == 0)
-        * input = 6; // 6
+        input = '6';
     else if (column_3 == 0 && row_2 == 0)
-        * input = 7; // 7
+        input = '7';
     else if (column_2 == 0 && row_2 == 0)
-        * input = 8; // 8
+        input = '8';
     else if (column_1 == 0 && row_2 == 0)
-        * input = 9; // 9
+        input = '9';
     else if (column_3 == 0 && row_1 == 0)
-        printf("clear");
-        // clear = true; //"*", clear inputs
+        input = '*';
     else if (column_2 == 0 && row_1 == 0)
-        * input = 0; // 0
+        input = '0';
     else
-        ; // #
-    ThisThread::sleep_for(INPUT_SENSITIVITY); // delay function
+        input = '#';
+    return input;
 }
 
 void FlashGreenLED(void)
