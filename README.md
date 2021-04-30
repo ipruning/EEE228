@@ -25,7 +25,8 @@
 ### 1.2 Name Convention
 
 - Class Naming Convention: `CapWords`
-- Function Naming Convention: `lower_with_under()`
+- Class Member Convention: `lower_with_under_`
+- Function Naming Convention: `CapWords()`
 - Variables Naming Convention: `lower_with_under`
 
 ## 2. Architecture
@@ -42,7 +43,8 @@
 
 ## 5. External Link
 
-- Google Drive
+- [Google Drive](https://drive.google.com/drive/u/2/folders/0AOCpiZtM2Mc6Uk9PVA)
+- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
 ## 6. ChangeLog
 
