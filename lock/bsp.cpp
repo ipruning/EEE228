@@ -9,3 +9,5 @@ DigitalOut digital_out_01(D1);
 DigitalOut digital_out_02(D2);
 DigitalOut led_green(LED1);
 DigitalOut led_red(LED2);
+
+SLCD display;

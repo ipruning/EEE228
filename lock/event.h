@@ -16,9 +16,12 @@ extern DigitalOut led_red;
 
 int column_1, column_2, column_3;
 int row_1, row_2, row_3, row_4;
+char output[] = "0000";
 
 void ScanColumn(void);
 char GetInput(void);
 void FlashGreenLED(void);
+void AppendBuffer(char input_array[10], int input, int *input_counter);
+void DisplayInput(char input_array[10], int input_counter);
 
 #endif

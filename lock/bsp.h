@@ -14,4 +14,6 @@ extern DigitalOut digital_out_02;
 extern DigitalOut led_green;
 extern DigitalOut led_red;
 
+extern SLCD display;
+
 #endif

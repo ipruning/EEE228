@@ -67,3 +67,32 @@ void FlashGreenLED(void)
 {
     led_green = !led_green;
 }
+
+void AppendBuffer(char input_array[10], int input, int *input_counter)
+{
+    for (int i = 0; i < *input_counter; i++)
+    {
+        input_array[*input_counter - i] = input_array[*input_counter - 1 - i];
+    }
+    input_array[0] = input;
+    *input_counter = *input_counter + 1;
+}
+
+void DisplayInput(char input_array[10], int input_counter)
+{
+    if (input_counter >= 4)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            output[3 - i] = input_array[i];
+        }
+    }
+    else
+    {
+        for (int i = 0; i < input_counter; i++)
+        {
+            output[3 - i] = input_array[i];
+        }
+    }
+    display.printf(output);
+}
