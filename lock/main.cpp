@@ -1,15 +1,22 @@
 #include "main.h"
 
+int input = 0;
+
+Ticker my_timer;
+Ticker my_led;
+SLCD display;
+
 int main()
 {
-    int counter = 0;
-    SLCD display;
-    timer.attach(UpdateLED, BLINKING_RATE);
+    int user_input = 0;
+    my_timer.attach(ScanColumn, SCAN_COLUMN_PERIOD);
+    my_led.attach(FlashLED, 100ms);
 
     while (true) {
-        ThisThread::sleep_for(SLEEP_PERIOD);
-        printf("loop %d\n", counter++);
+        // ThisThread::sleep_for(1000ms);
+        GetInput(&user_input);
         display.Home();
-        display.printf("%d", counter);
+        display.printf("%d", user_input);
+        printf("%d\n", user_input);
     }
 }
