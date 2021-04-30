@@ -18,10 +18,44 @@ int column_1, column_2, column_3;
 int row_1, row_2, row_3, row_4;
 char output[] = "0000";
 
+/*
+function    
+brief:      
+param:      
+return:     
+*/
 void ScanColumn(void);
+
+/*
+function    
+brief:      
+param:      
+return:     
+*/
 char GetInput(void);
+
+/*
+function    
+brief:      
+param:      
+return:     
+*/
 void FlashGreenLED(void);
-void AppendBuffer(char input_array[10], int input, int *input_counter);
-void DisplayInput(char input_array[10], int input_counter);
+
+/*
+function    
+brief:      
+param:      
+return:     
+*/
+void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
+
+/*
+function    
+brief:      
+param:      
+return:     
+*/
+void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
 
 #endif

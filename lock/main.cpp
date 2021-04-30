@@ -1,10 +1,22 @@
 #include "main.h"
+#include <iostream>
+#import <string>
+
+class PW
+{
+    public:
+        double a;
+        void MyTest();
+}
+void PW::MyTest(void)
+{
+    return 0;
+}
 
 int main()
 {
     ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
-    ticker_led.attach(FlashGreenLED, 1000ms);
-
+    // ticker_led.attach(FlashGreenLED, 1000ms);
     while (true)
     {
         user_input = GetInput();
@@ -13,7 +25,7 @@ int main()
         {
             if (user_input != user_input_buffer[0])
             {
-                if (user_input_counter >= 10)
+                if (user_input_counter >= MAX_PW_LENGTH)
                 {
                     user_input_counter = 0;
                 }
