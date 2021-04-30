@@ -1,6 +1,7 @@
 .vscode
 .build
 .mbed
+.hg
 projectfiles
 *.py*
 BUILD
