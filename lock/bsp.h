@@ -2,6 +2,7 @@
 #define BSP_H
 
 #include "mbed.h"
+#include "drivers/SLCD/SLCD.h"
 
 extern DigitalIn digital_in_00;
 extern DigitalIn digital_in_01;
