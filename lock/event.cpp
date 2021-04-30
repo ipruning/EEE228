@@ -60,6 +60,7 @@ void GetInput(int * input)
         * input = 0; // 0
     else
         ; // #
+    ThisThread::sleep_for(INPUT_SENSITIVITY); // delay function
 }
 
 void FlashGreenLED(void)
