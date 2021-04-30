@@ -6,11 +6,6 @@
 
 void ScanColumn(void);
 void GetInput(int * input);
+void FlashGreenLED(void);
 
-DigitalOut led(LED1);
 Ticker timer;
-
-void FlashLED(void)
-{
-    led = !led;
-}

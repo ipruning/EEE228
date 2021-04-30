@@ -61,3 +61,8 @@ void GetInput(int * input)
     else
         ; // #
 }
+
+void FlashGreenLED(void)
+{
+    led_green = !led_green;
+}

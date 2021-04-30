@@ -19,5 +19,6 @@ int row_1, row_2, row_3, row_4;
 
 void ScanColumn(void);
 void GetInput(int * input);
+void FlashGreenLED(void);
 
 #endif

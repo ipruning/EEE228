@@ -10,7 +10,7 @@ int main()
 {
     int user_input = 0;
     my_timer.attach(ScanColumn, SCAN_COLUMN_PERIOD);
-    my_led.attach(FlashLED, 100ms);
+    my_led.attach(FlashGreenLED, 1000ms);
 
     while (true) {
         // ThisThread::sleep_for(1000ms);
