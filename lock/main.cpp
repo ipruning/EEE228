@@ -1,13 +1,15 @@
-#include "mbed.h"
-
-#define BLINKING_RATE     500ms
+#include "main.h"
 
 int main()
 {
-    DigitalOut led(LED1);
+    int counter = 0;
+    SLCD display;
+    timer.attach(UpdateLED, BLINKING_RATE);
 
     while (true) {
-        led = !led;
-        ThisThread::sleep_for(BLINKING_RATE);
+        ThisThread::sleep_for(SLEEP_PERIOD);
+        printf("loop %d\n", counter++);
+        display.Home();
+        display.printf("%d", counter);
     }
 }
