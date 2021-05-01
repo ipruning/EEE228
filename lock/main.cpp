@@ -1,17 +1,17 @@
 #include "main.h"
-#include <iostream>
-#import <string>
+// #include <iostream>
+// #import <string>
 
-class PW
-{
-    public:
-        double a;
-        void MyTest();
-}
-void PW::MyTest(void)
-{
-    return 0;
-}
+// class PW
+// {
+//     public:
+//         double a;
+//         void MyTest();
+// }
+// void PW::MyTest(void)
+// {
+//     return 0;
+// }
 
 int main()
 {
@@ -40,6 +40,10 @@ int main()
                 timer_input.start();
                 if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
                 {
+                    if (user_input_counter >= MAX_PW_LENGTH)
+                    {
+                        user_input_counter = 0;
+                    }
                     AppendBuffer(user_input_buffer, user_input, &user_input_counter);
                     DisplayInput(user_input_buffer, user_input_counter);
                 }
