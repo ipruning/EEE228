@@ -3,5 +3,4 @@
 .mbed
 .hg
 projectfiles
-*.py*
 BUILD
