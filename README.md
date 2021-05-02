@@ -11,10 +11,9 @@
   - [2. Architecture](#2-architecture)
     - [2.0 Overall](#20-overall)
     - [2.1 Class](#21-class)
-  - [3. Contributors](#3-contributors)
-  - [4. License](#4-license)
-  - [5. External Link](#5-external-link)
-  - [6. ChangeLog](#6-changelog)
+  - [3. License](#3-license)
+  - [4. External Link](#4-external-link)
+  - [5. ChangeLog](#5-changelog)
 
 ## 1. Background
 
@@ -35,17 +34,15 @@
 
 ### 2.1 Class
 
-## 3. Contributors
-
-## 4. License
+## 3. License
 
 [GNU General Public License v3.0](LICENSE)
 
-## 5. External Link
+## 4. External Link
 
 - [Google Drive](https://drive.google.com/drive/u/2/folders/0AOCpiZtM2Mc6Uk9PVA)
 - [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
-## 6. ChangeLog
+## 5. ChangeLog
 
 - 210420 init
