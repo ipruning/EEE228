@@ -5,9 +5,10 @@
 class PW
 {
 public:
-    // int GetPassword(void);
-    void UpdatePassword(char[], int);
     bool CheckPassword(void);
+    void UpdatePassword(char[]);
+    void UpdatePasswordHash(char[]);
+    void ResetUserInput(void);
     size_t GetHash(char[], int);
 
     int user_input;
@@ -18,53 +19,75 @@ public:
     PW();
 
 private:
+    char password[MAX_PW_LENGTH];
     char salt[11];
-    // char password[MAX_PW_LENGTH];
 };
 
 PW::PW(void)
 {
     char password_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
-    // strcpy(password, password_default);
-    password_length = 4;
-
-    strcpy(salt, "jf7@qLy_u6Q*");
-
-    UpdatePassword(password_default, password_length);
+    strcpy(password, password_default);
+    password_length = 10;
+    // strcpy(salt, "jf7@qLy_u6Q*");
+    // UpdatePasswordHash(password_default, password_length);
 }
 
 bool PW::CheckPassword(void)
 {
-    char temp[MAX_PW_LENGTH] = {0};
-    for (int i = 0; i < user_input_counter; i++)
-    {
-        temp[i] = user_input_buffer[user_input_counter - 1 - i];
-    }
     if (password_length != user_input_counter)
     {
         return false;
     }
     else
     {
-        if (GetHash(temp, user_input_counter) == password_hash)
+        char temp[MAX_PW_LENGTH] = {0};
+        for (int i = 0; i < user_input_counter; i++)
         {
-            return true;
+            temp[i] = user_input_buffer[user_input_counter - 1 - i];
         }
-        else
+        for (int i = 0; i < password_length; i++)
         {
-            return false;
+            if (temp[i] != password[i])
+            {
+                return false;
+            }
         }
+        return true;
     }
+    // else
+    // {
+    //     if (GetHash(temp, user_input_counter) == password_hash)
+    //     {
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
 }
 
-void PW::UpdatePassword(char input[MAX_PW_LENGTH], int input_length)
+void PW::UpdatePassword(char input[MAX_PW_LENGTH])
 {
-    password_hash = GetHash(input, input_length);
+    char temp[MAX_PW_LENGTH] = {0};
+    for (int i = 0; i < user_input_counter; i++)
+    {
+        temp[i] = user_input_buffer[user_input_counter - 1 - i];
+    }
+    for (int i = 0; i < user_input_counter; i++)
+    {
+        password[i] = temp[i];
+    }
+    password_length = user_input_counter;
+}
+
+void PW::UpdatePasswordHash(char input[MAX_PW_LENGTH])
+{
+    password_hash = GetHash(input, password_length);
 }
 
 size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
 {
-
     std::string str;
     for (int i = 0; i < input_length; i++)
     {
@@ -75,9 +98,14 @@ size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
     return hash1;
 }
 
-// void PW::Reset()
-// {
-// }
+void PW::ResetUserInput(void);
+{
+    user_input_counter = 0;
+    for (int i = 0; i < MAX_PW_LENGTH; i++)
+    {
+        user_input_buffer[i] = '0';
+    }
+}
 
 int main()
 {
@@ -92,23 +120,23 @@ int main()
         {
             if (PW1.user_input == '#')
             {
-                // if (PW1.CheckPassword())
-                // {
-                //     ticker_led.attach(FlashGreenLED, 100ms);
-                // }
-                // else
-                // {
-                //     ticker_led.attach(FlashRedLED, 100ms);
-                // }
-                display.clear();
-                display.Home();
-                // int tempint = PW1.password_hash % 10000;
-                // display.printf("%d", tempint);
-                // display.printf("%d", PW1.password_hash);
-                display.printf("%c", PW1.user_input_buffer[3]);
-                // display.printf("%d", PW1.user_input_counter);
-                ThisThread::sleep_for(1000ms);
-                PW1.user_input_counter = 0;
+                if (PW1.CheckPassword())
+                {
+                    ticker_led.attach(FlashGreenLED, 100ms);
+                }
+                else
+                {
+                    ticker_led.attach(FlashRedLED, 100ms);
+                }
+                // display.clear();
+                // display.Home();
+                // // int tempint = PW1.password_hash % 10000;
+                // // display.printf("%d", tempint);
+                // // display.printf("%d", PW1.password_hash);
+                // display.printf("%c", PW1.user_input_buffer[3]);
+                // // display.printf("%d", PW1.user_input_counter);
+                // ThisThread::sleep_for(1000ms);
+                // PW1.user_input_counter = 0;
             }
             else if (PW1.user_input == '*')
             {
