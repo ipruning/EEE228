@@ -48,6 +48,14 @@ brief:
 param:      
 return:     
 */
+void FlashRedLED(void);
+
+/*
+function    
+brief:      
+param:      
+return:     
+*/
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
 
 /*

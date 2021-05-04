@@ -68,6 +68,11 @@ void FlashGreenLED(void)
     led_green = !led_green;
 }
 
+void FlashRedLED(void)
+{
+    led_red = !led_red;
+}
+
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter)
 {
     for (int i = 0; i < *input_counter; i++)
