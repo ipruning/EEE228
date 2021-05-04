@@ -5,15 +5,16 @@
 class PW
 {
 public:
+    // int GetPassword(void);
     void UpdatePassword(char[], int);
     bool CheckPassword(void);
-    unsigned long long GetHash(char[], int);
+    size_t GetHash(char[], int);
 
     int user_input;
-    char user_input_buffer[MAX_PW_LENGTH] = {0};
     int user_input_counter;
+    char user_input_buffer[MAX_PW_LENGTH];
     int password_length;
-    unsigned long long password_hash;
+    size_t password_hash;
     PW();
 
 private:
@@ -25,18 +26,11 @@ PW::PW(void)
 {
     char password_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
     // strcpy(password, password_default);
-    password_length = 10;
-    user_input = 0;
-    user_input_counter = 0;
+    password_length = 4;
 
     strcpy(salt, "jf7@qLy_u6Q*");
 
     UpdatePassword(password_default, password_length);
-}
-
-void PW::UpdatePassword(char input[MAX_PW_LENGTH], int input_length)
-{
-    password_hash = GetHash(input, input_length);
 }
 
 bool PW::CheckPassword(void)
@@ -46,7 +40,6 @@ bool PW::CheckPassword(void)
     {
         temp[i] = user_input_buffer[user_input_counter - 1 - i];
     }
-    
     if (password_length != user_input_counter)
     {
         return false;
@@ -64,22 +57,27 @@ bool PW::CheckPassword(void)
     }
 }
 
-// void PW::Reset()
-// {
-// }
-
-unsigned long long PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
+void PW::UpdatePassword(char input[MAX_PW_LENGTH], int input_length)
 {
-    std::hash<std::string> hash;
+    password_hash = GetHash(input, input_length);
+}
+
+size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
+{
 
     std::string str;
     for (int i = 0; i < input_length; i++)
     {
         str += std::to_string(input[i]);
     }
-
-    return hash(strcat(&str[0], salt));
+    std::hash<std::string> hash;
+    size_t hash1 = hash(str);
+    return hash1;
 }
+
+// void PW::Reset()
+// {
+// }
 
 int main()
 {
@@ -104,8 +102,11 @@ int main()
                 // }
                 display.clear();
                 display.Home();
-                int tempint = PW1.password_hash % 10000;
-                display.printf("%d", tempint);
+                // int tempint = PW1.password_hash % 10000;
+                // display.printf("%d", tempint);
+                // display.printf("%d", PW1.password_hash);
+                display.printf("%c", PW1.user_input_buffer[3]);
+                // display.printf("%d", PW1.user_input_counter);
                 ThisThread::sleep_for(1000ms);
                 PW1.user_input_counter = 0;
             }
