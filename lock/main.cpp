@@ -35,7 +35,7 @@ int main()
             }
             else
             {
-                timer_input_end = timer_input.read_us();
+                timer_input_end = timer_input.elapsed_time().count();
                 timer_input.reset();
                 timer_input.start();
                 if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
@@ -47,7 +47,7 @@ int main()
                     AppendBuffer(user_input_buffer, user_input, &user_input_counter);
                     DisplayInput(user_input_buffer, user_input_counter);
                 }
-                timer_input_begin = timer_input.read_us();
+                timer_input_begin = timer_input.elapsed_time().count();
             }
         }
     }
