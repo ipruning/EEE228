@@ -13,4 +13,5 @@ jobs:
           path: EEE228
       - run: |
           cd EEE228/lock
+          mbed deploy
           mbed compile -m KL46Z -t GCC_ARM
