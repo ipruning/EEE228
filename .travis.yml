@@ -83,6 +83,7 @@ matrix:
         - >-
       script:
         - cd lock
+        - mbedtools deploy
         - echo mbedtools compile -t GCC_ARM -m ${TARGET_NAME} -b ${PROFILE}
         - mbedtools compile -t GCC_ARM -m ${TARGET_NAME} -b ${PROFILE}
         - ccache -s
