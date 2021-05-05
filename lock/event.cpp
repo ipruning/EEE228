@@ -75,26 +75,30 @@ void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter
 
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
 {
-    if (input_counter == 0)
+    if (input_counter >= 4)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            output[3 - i] = input_array[i];
+        }
+    }
+    else if (input_counter > 0)
+    {
+        for (int i = 0; i < input_counter; i++)
+        {
+            output[3 - i] = input_array[i];
+        }
+    }
+    else if (input_counter == 0)
     {
         for (int i = 0; i < 4; i++)
         {
             output[i] = '0';
         }
     }
-    else if (input_counter >= 4)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            output[3 - i] = input_array[i];
-        }
-    }
     else
     {
-        for (int i = 0; i < input_counter; i++)
-        {
-            output[3 - i] = input_array[i];
-        }
+        ;
     }
     display.printf(output);
 }
