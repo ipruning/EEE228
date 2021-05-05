@@ -15,4 +15,4 @@ jobs:
           cd EEE228/lock
           mbed add mbed-os
           mbed deploy
-          mbed compile -t ARM -m KL46Z
+          mbed compile -m KL46Z -t ARMC6
