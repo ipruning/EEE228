@@ -6,13 +6,13 @@ class PW
 {
 public:
     bool CheckPassword(void);
-    void UpdatePassword(char[]);
+    void UpdatePassword(void);
     void UpdatePasswordHash(char[]);
     void ResetUserInput(void);
     int GetUserInputBuffer(void);
     size_t GetHash(char[], int);
 
-    int user_input; // 用户输入
+    int user_input;         // 用户输入
     int user_input_counter; // 用户输入位数
     int user_check_counter; // 用户误输次数
     char user_input_buffer[MAX_PW_LENGTH];
@@ -73,7 +73,7 @@ bool PW::CheckPassword(void)
     // }
 }
 
-void PW::UpdatePassword(char input[MAX_PW_LENGTH])
+void PW::UpdatePassword(void)
 {
     char temp[MAX_PW_LENGTH] = {0};
     for (int i = 0; i < user_input_counter; i++)
@@ -115,9 +115,10 @@ void PW::ResetUserInput(void)
 
 int PW::GetUserInputBuffer(void)
 {
-    ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
+    // ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
     ResetUserInput();
     DisplayInput(user_input_buffer, user_input_counter);
+    DisplayString("GO");
     while (true)
     {
         user_input = GetInput();
@@ -126,7 +127,7 @@ int PW::GetUserInputBuffer(void)
         {
             if (user_input == '#')
             {
-                ticker_scan_column.detach();
+                // ticker_scan_column.detach();
                 return 0;
             }
             else if (user_input == '*')
@@ -170,93 +171,117 @@ int PW::GetUserInputBuffer(void)
 int main()
 {
     PW PW1;
-    PW1.GetUserInputBuffer();
-    // ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
-    // while (true)
-    // {
-    //     PW1.user_input = GetInput();
-    //     ThisThread::sleep_for(INPUT_SENSITIVITY);
-    //     if (row_1 * row_2 * row_3 * row_4 == 0)
-    //     {
-    //         if (PW1.user_input == '#')
-    //         {
-    //             if (PW1.user_input_counter == 0)
-    //             {
-    //                 DisplayString("PRESS # TO CHANGE PW");
-    //                 // DisplayString("PRESS OTHER TO CHANGE PW");
-    //             }
-    //             else if (PW1.user_check_counter <= MAX_PW_INPUT_TIMES)
-    //             {
-    //                 if (PW1.CheckPassword())
-    //                 {
-    //                     ticker_led.attach(FlashGreenLED, 100ms);
-    //                     DisplayString("PASS");
-    //                     PW1.ResetUserInput();
-    //                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-    //                     ticker_led.detach();
-    //                     // #TODO 需要添加开门的函数
-    //                 }
-    //                 else
-    //                 {
-    //                     ticker_led.attach(FlashRedLED, 100ms);
-    //                     DisplayString("Failed");
-    //                     PW1.ResetUserInput();
-    //                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-    //                     ticker_led.detach();
-    //                 }
-    //             }
-    //             else
-    //             {
-    //                 ticker_led.attach(FlashRedLED, 100ms);
-    //                 DisplayString("Please try again later");
-    //                 ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
-    //                 PW1.ResetUserInput();
-    //                 ticker_led.detach();
-    //             }
-    //             // display.clear();
-    //             // display.Home();
-    //             // // int tempint = PW1.password_hash % 10000;
-    //             // // display.printf("%d", tempint);
-    //             // // display.printf("%d", PW1.password_hash);
-    //             // display.printf("%c", PW1.user_input_buffer[3]);
-    //             // // display.printf("%d", PW1.user_input_counter);
-    //             // ThisThread::sleep_for(1000ms);
-    //             // PW1.user_input_counter = 0;
-    //         }
-    //         else if (PW1.user_input == '*')
-    //         {
-    //             PW1.ResetUserInput();
-    //             DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-    //         }
-    //         else
-    //         {
-    //             if (PW1.user_input != PW1.user_input_buffer[0])
-    //             {
-    //                 if (PW1.user_input_counter >= MAX_PW_LENGTH)
-    //                 {
-    //                     PW1.user_input_counter = MAX_PW_LENGTH; // #TODO
-    //                 }
-    //                 AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
-    //                 DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-    //                 timer_input.reset();
-    //             }
-    //             else
-    //             {
-    //                 timer_input_end = timer_input.elapsed_time().count();
-    //                 timer_input.reset();
-    //                 timer_input.start();
-    //                 if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
-    //                 {
-    //                     if (PW1.user_input_counter >= MAX_PW_LENGTH)
-    //                     {
-    //                         PW1.user_input_counter = 0;
-    //                     }
-    //                     AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
-    //                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-    //                 }
-    //                 timer_input_begin = timer_input.elapsed_time().count();
-    //             }
-    //         }
-    //     }
-    // }
+    led_green = !led_green;
+    led_red = !led_red;
+    ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
+    PW1.ResetUserInput();
+    DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+    while (true)
+    {
+        PW1.user_input = GetInput();
+        ThisThread::sleep_for(INPUT_SENSITIVITY);
+        if (row_1 * row_2 * row_3 * row_4 == 0)
+        {
+            if (PW1.user_input == '#')
+            {
+                if (PW1.user_input_counter == 0)
+                {
+                    DisplayString("PRESS INPUT OLD PASSWORD TO CHANGE PASSWORD");
+                    // DisplayString("PRESS # TO CHANGE PASSWORD");
+                    // DisplayString("PRESS OTHER TO CHANGE PW");
+                    PW1.GetUserInputBuffer();
+                    if (PW1.CheckPassword())
+                    {
+                        DisplayString("PLEASE INPUT NEW");
+                        ticker_led.attach(FlashGreenLED, 100ms);
+                        PW1.GetUserInputBuffer();
+                        PW1.UpdatePassword();
+                        DisplayString("DONE");
+                        PW1.ResetUserInput();
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                        ticker_led.detach();
+                    }
+                    else
+                    {
+                        ticker_led.attach(FlashRedLED, 100ms);
+                        DisplayString("WRONG");
+                        PW1.ResetUserInput();
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                        ticker_led.detach();
+                    }
+                }
+                else if (PW1.user_check_counter <= MAX_PW_INPUT_TIMES)
+                {
+                    if (PW1.CheckPassword())
+                    {
+                        ticker_led.attach(FlashGreenLED, 100ms);
+                        DisplayString("PASS");
+                        PW1.ResetUserInput();
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                        ticker_led.detach();
+                        // #TODO 需要添加开门的函数
+                    }
+                    else
+                    {
+                        ticker_led.attach(FlashRedLED, 100ms);
+                        DisplayString("FAILED");
+                        PW1.ResetUserInput();
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                        ticker_led.detach();
+                    }
+                }
+                else
+                {
+                    ticker_led.attach(FlashRedLED, 100ms);
+                    DisplayString("Please try again later");
+                    ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
+                    PW1.ResetUserInput();
+                    ticker_led.detach();
+                }
+                // display.clear();
+                // display.Home();
+                // // int tempint = PW1.password_hash % 10000;
+                // // display.printf("%d", tempint);
+                // // display.printf("%d", PW1.password_hash);
+                // display.printf("%c", PW1.user_input_buffer[3]);
+                // // display.printf("%d", PW1.user_input_counter);
+                // ThisThread::sleep_for(1000ms);
+                // PW1.user_input_counter = 0;
+            }
+            else if (PW1.user_input == '*')
+            {
+                PW1.ResetUserInput();
+                DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+            }
+            else
+            {
+                if (PW1.user_input != PW1.user_input_buffer[0])
+                {
+                    if (PW1.user_input_counter >= MAX_PW_LENGTH)
+                    {
+                        PW1.user_input_counter = MAX_PW_LENGTH; // #TODO
+                    }
+                    AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
+                    DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                    timer_input.reset();
+                }
+                else
+                {
+                    timer_input_end = timer_input.elapsed_time().count();
+                    timer_input.reset();
+                    timer_input.start();
+                    if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
+                    {
+                        if (PW1.user_input_counter >= MAX_PW_LENGTH)
+                        {
+                            PW1.user_input_counter = 0;
+                        }
+                        AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                    }
+                    timer_input_begin = timer_input.elapsed_time().count();
+                }
+            }
+        }
+    }
 }
