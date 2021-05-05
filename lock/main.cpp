@@ -11,8 +11,9 @@ public:
     void ResetUserInput(void);
     size_t GetHash(char[], int);
 
-    int user_input;
-    int user_input_counter;
+    int user_input; // 用户输入
+    int user_input_counter; // 用户输入位数
+    int user_check_counter; // 用户误输次数
     char user_input_buffer[MAX_PW_LENGTH];
     int password_length;
     size_t password_hash;
@@ -27,7 +28,8 @@ PW::PW(void)
 {
     char password_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
     strcpy(password, password_default);
-    password_length = 10;
+    password_length = 4;
+    user_check_counter = 0;
     // strcpy(salt, "jf7@qLy_u6Q*");
     // UpdatePasswordHash(password_default, password_length);
 }
@@ -36,6 +38,7 @@ bool PW::CheckPassword(void)
 {
     if (password_length != user_input_counter)
     {
+        user_check_counter++;
         return false;
     }
     else
@@ -49,9 +52,11 @@ bool PW::CheckPassword(void)
         {
             if (temp[i] != password[i])
             {
+                user_check_counter++;
                 return false;
             }
         }
+        user_check_counter = 0;
         return true;
     }
     // else
@@ -120,13 +125,21 @@ int main()
         {
             if (PW1.user_input == '#')
             {
-                if (PW1.CheckPassword())
+                if (PW1.user_check_counter <= MAX_PW_INPUT_TIMES)
                 {
-                    ticker_led.attach(FlashGreenLED, 100ms);
+                    if (PW1.CheckPassword())
+                    {
+                        ticker_led.attach(FlashGreenLED, 100ms);
+                    }
+                    else
+                    {
+                        ticker_led.attach(FlashRedLED, 100ms);
+                    }
                 }
                 else
                 {
-                    ticker_led.attach(FlashRedLED, 100ms);
+                    ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
+                    PW1.user_check_counter = 0;
                 }
                 // display.clear();
                 // display.Home();
