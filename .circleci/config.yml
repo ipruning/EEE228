@@ -10,7 +10,7 @@ jobs:
     working_directory: ~
     steps:
       - checkout:
-          path: lock
+          path: EEE228
       - run: |
-          mbed deploy
+          cd EEE228/lock
           mbed compile -m KL46Z -t GCC_ARM
