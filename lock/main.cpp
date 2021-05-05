@@ -98,7 +98,7 @@ size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
     return hash1;
 }
 
-void PW::ResetUserInput(void);
+void PW::ResetUserInput(void)
 {
     user_input_counter = 0;
     for (int i = 0; i < MAX_PW_LENGTH; i++)
@@ -140,7 +140,8 @@ int main()
             }
             else if (PW1.user_input == '*')
             {
-                ;
+                PW1.ResetUserInput();
+                DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
             }
             else
             {
@@ -148,7 +149,7 @@ int main()
                 {
                     if (PW1.user_input_counter >= MAX_PW_LENGTH)
                     {
-                        PW1.user_input_counter = 0;
+                        PW1.user_input_counter = 0; // #TODO
                     }
                     AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
