@@ -3,6 +3,7 @@
 
 #include "bsp.h"
 #include "config.h"
+#include <string>
 
 extern DigitalIn digital_in_00;
 extern DigitalIn digital_in_01;
@@ -16,7 +17,7 @@ extern DigitalOut led_red;
 
 int column_1, column_2, column_3;
 int row_1, row_2, row_3, row_4;
-char output[] = "0000"; // default falue
+char output[] = "0000"; // 输出给屏幕的四位默认为 0
 
 /*
 function    
@@ -65,5 +66,7 @@ param:
 return:     
 */
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
+
+void DisplayString(string input_string);
 
 #endif

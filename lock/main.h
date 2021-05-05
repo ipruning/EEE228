@@ -23,3 +23,4 @@ void FlashGreenLED(void);
 void FlashRedLED(void);
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
+void DisplayString(string input_string);

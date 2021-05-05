@@ -130,16 +130,27 @@ int main()
                     if (PW1.CheckPassword())
                     {
                         ticker_led.attach(FlashGreenLED, 100ms);
+                        DisplayString("PASS");
+                        PW1.ResetUserInput();
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                        ticker_led.detach();
                     }
                     else
                     {
                         ticker_led.attach(FlashRedLED, 100ms);
+                        DisplayString("Failed");
+                        PW1.ResetUserInput();
+                        DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                        ticker_led.detach();
                     }
                 }
                 else
                 {
+                    ticker_led.attach(FlashRedLED, 100ms);
+                    DisplayString("Please try again later");
                     ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
-                    PW1.user_check_counter = 0;
+                    PW1.ResetUserInput();
+                    ticker_led.detach();
                 }
                 // display.clear();
                 // display.Home();

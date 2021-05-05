@@ -63,16 +63,6 @@ char GetInput(void)
     return input;
 }
 
-void FlashGreenLED(void)
-{
-    led_green = !led_green;
-}
-
-void FlashRedLED(void)
-{
-    led_red = !led_red;
-}
-
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter)
 {
     for (int i = 0; i < *input_counter; i++)
@@ -107,4 +97,32 @@ void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
         }
     }
     display.printf(output);
+}
+
+void DisplayString(string input_string)
+{
+    string display_string("   ");
+    display_string.append(input_string).append("   ");
+    int length = display_string.length();
+
+    for (int i = 0; i < length - 3; i++)
+    {
+        display.printf("%c", display_string[i]);
+        display.printf("%c", display_string[i + 1]);
+        display.printf("%c", display_string[i + 2]);
+        display.printf("%c", display_string[i + 3]);
+        ThisThread::sleep_for(300ms);
+    }
+    display.clear();
+    display.Home();
+}
+
+void FlashGreenLED(void)
+{
+    led_green = !led_green;
+}
+
+void FlashRedLED(void)
+{
+    led_red = !led_red;
 }
