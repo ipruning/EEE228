@@ -138,9 +138,9 @@ void PW::ResetUserInput(void)
 int PW::GetUserInputBuffer(void)
 {
     // ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
+    DisplayString("GO");
     ResetUserInput();
     DisplayInput(user_input_buffer, user_input_counter);
-    DisplayString("GO");
     while (true)
     {
         user_input = GetInput();

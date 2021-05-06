@@ -18,13 +18,13 @@ int main()
             {
                 if (PW1.user_input_counter == 0)
                 {
-                    DisplayString("PRESS INPUT OLD PASSWORD TO CHANGE PASSWORD");
+                    DisplayString("PRESS INPUT OLD PW");
                     // DisplayString("PRESS # TO CHANGE PASSWORD");
                     // DisplayString("PRESS OTHER TO CHANGE PW");
                     PW1.GetUserInputBuffer();
                     if (PW1.CheckPassword())
                     {
-                        DisplayString("PLEASE INPUT NEW");
+                        DisplayString("PLEASE INPUT NEW PW");
                         ticker_led.attach(FlashGreenLED, 100ms);
                         PW1.GetUserInputBuffer();
                         PW1.UpdatePassword();
@@ -68,6 +68,8 @@ int main()
                     DisplayString("Please try again later");
                     ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
                     PW1.ResetUserInput();
+                    DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                    PW1.user_check_counter = 0;
                     ticker_led.detach();
                 }
                 // display.clear();
