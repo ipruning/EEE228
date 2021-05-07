@@ -12,6 +12,7 @@ int main()
     {
         PW1.user_input = GetInput();
         ThisThread::sleep_for(INPUT_SENSITIVITY);
+        // PW1.user_input = GetInput(); #TODO
         if (row_1 * row_2 * row_3 * row_4 == 0)
         {
             if (PW1.user_input == '#')
@@ -91,13 +92,13 @@ int main()
             {
                 if (PW1.user_input != PW1.user_input_buffer[0])
                 {
+                    timer_input.reset();
                     if (PW1.user_input_counter >= MAX_PW_LENGTH)
                     {
                         PW1.user_input_counter = MAX_PW_LENGTH; // #TODO
                     }
                     AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-                    timer_input.reset();
                 }
                 else
                 {
@@ -108,7 +109,7 @@ int main()
                     {
                         if (PW1.user_input_counter >= MAX_PW_LENGTH)
                         {
-                            PW1.user_input_counter = 0;
+                            PW1.user_input_counter = MAX_PW_LENGTH;
                         }
                         AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
                         DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
