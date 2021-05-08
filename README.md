@@ -19,6 +19,8 @@
 
 ### 1.0 Install
 
+#TODO
+
 ### 1.1 Usage
 
 ### 1.2 Name Convention
@@ -32,7 +34,11 @@
 
 ### 2.0 Overall
 
+#TODO
+
 ### 2.1 Class
+
+#TODO
 
 ## 3. License
 
