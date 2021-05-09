@@ -1,8 +1,8 @@
-# EEE228 Project
+# EEE228 Lock Project
 
 ## 0. Table of Contents
 
-- [EEE228 Project](#eee228-project)
+- [EEE228 Lock Project](#eee228-lock-project)
   - [0. Table of Contents](#0-table-of-contents)
   - [1. Background](#1-background)
     - [1.0 Install](#10-install)
