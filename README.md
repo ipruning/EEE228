@@ -1,8 +1,8 @@
-# EEE228 Project
+# EEE228 Lock Project
 
 ## 0. Table of Contents
 
-- [EEE228 Project](#eee228-project)
+- [EEE228 Lock Project](#eee228-lock-project)
   - [0. Table of Contents](#0-table-of-contents)
   - [1. Background](#1-background)
     - [1.0 Install](#10-install)
@@ -19,6 +19,8 @@
 
 ### 1.0 Install
 
+#TODO
+
 ### 1.1 Usage
 
 ### 1.2 Name Convention
@@ -32,7 +34,11 @@
 
 ### 2.0 Overall
 
+#TODO
+
 ### 2.1 Class
+
+#TODO
 
 ## 3. License
 

@@ -12,19 +12,20 @@ int main()
     {
         PW1.user_input = GetInput();
         ThisThread::sleep_for(INPUT_SENSITIVITY);
+        // PW1.user_input = GetInput(); #TODO
         if (row_1 * row_2 * row_3 * row_4 == 0)
         {
             if (PW1.user_input == '#')
             {
                 if (PW1.user_input_counter == 0)
                 {
-                    DisplayString("PRESS INPUT OLD PASSWORD TO CHANGE PASSWORD");
+                    DisplayString("PRESS INPUT OLD PW");
                     // DisplayString("PRESS # TO CHANGE PASSWORD");
                     // DisplayString("PRESS OTHER TO CHANGE PW");
                     PW1.GetUserInputBuffer();
                     if (PW1.CheckPassword())
                     {
-                        DisplayString("PLEASE INPUT NEW");
+                        DisplayString("PLEASE INPUT NEW PW");
                         ticker_led.attach(FlashGreenLED, 100ms);
                         PW1.GetUserInputBuffer();
                         PW1.UpdatePassword();
@@ -68,6 +69,8 @@ int main()
                     DisplayString("Please try again later");
                     ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
                     PW1.ResetUserInput();
+                    DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                    PW1.user_check_counter = 0;
                     ticker_led.detach();
                 }
                 // display.clear();
@@ -89,13 +92,13 @@ int main()
             {
                 if (PW1.user_input != PW1.user_input_buffer[0])
                 {
+                    timer_input.reset();
                     if (PW1.user_input_counter >= MAX_PW_LENGTH)
                     {
                         PW1.user_input_counter = MAX_PW_LENGTH; // #TODO
                     }
                     AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
-                    timer_input.reset();
                 }
                 else
                 {
@@ -106,7 +109,7 @@ int main()
                     {
                         if (PW1.user_input_counter >= MAX_PW_LENGTH)
                         {
-                            PW1.user_input_counter = 0;
+                            PW1.user_input_counter = MAX_PW_LENGTH;
                         }
                         AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
                         DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
