@@ -7,5 +7,6 @@
 #define MAX_PW_LENGTH 10
 #define MAX_PW_INPUT_TIMES 4
 #define PW_FALSE_SELLP_PERIOD 10000ms // 误输入等待时间
+#define DEVICE_FLASH 1
 
 #endif

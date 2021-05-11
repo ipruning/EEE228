@@ -41,7 +41,7 @@ brief:
 param:      
 return:     
 */
-void FlashGreenLED(void);
+void ToggleGreenLED(void);
 
 /*
 function    
@@ -49,7 +49,7 @@ brief:
 param:      
 return:     
 */
-void FlashRedLED(void);
+void ToggleRedLED(void);
 
 /*
 function    
@@ -68,5 +68,7 @@ return:
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
 
 void DisplayString(string input_string);
+
+void FlashOperation(void);
 
 #endif
