@@ -121,12 +121,25 @@ void DisplayString(string input_string)
     display.Home();
 }
 
-void FlashGreenLED(void)
+void ToggleGreenLED(void)
 {
     led_green = !led_green;
 }
 
-void FlashRedLED(void)
+void ToggleRedLED(void)
 {
     led_red = !led_red;
+}
+
+void FlashOperation(void)
+{
+    // #define DEVICE_FLASH 1
+
+    FlashIAP PW_Flash;
+    PW_Flash.init();
+    int address = PW_Flash.get_flash_size() - 4096;
+    // int *data = (int *)address;
+    PW_Flash.erase(address, 4096);
+    int numbers[10] = {0, 1, 10, 100, 1000, 10000, 1000000, 10000000, 100000000, 1000000000};
+    PW_Flash.program(numbers, address, 4096);
 }
