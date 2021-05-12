@@ -75,6 +75,8 @@ void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter
 
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
 {
+    led_green = 1;
+    led_red = 1;
     if (input_counter >= 4)
     {
         for (int i = 0; i < 4; i++)
