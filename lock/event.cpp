@@ -28,39 +28,75 @@ void ScanColumn(void)
 
 char GetInput(void)
 {
-    int input;
-    digital_out_00.write(column_1);
-    digital_out_01.write(column_2);
-    digital_out_02.write(column_3);
-    row_1 = digital_in_00.read();
-    row_2 = digital_in_01.read();
-    row_3 = digital_in_02.read();
-    row_4 = digital_in_03.read();
-    if (column_3 == 0 && row_4 == 0)
-        input = '1';
-    else if (column_2 == 0 && row_4 == 0)
-        input = '2';
-    else if (column_1 == 0 && row_4 == 0)
-        input = '3';
-    else if (column_3 == 0 && row_3 == 0)
-        input = '4';
-    else if (column_2 == 0 && row_3 == 0)
-        input = '5';
-    else if (column_1 == 0 && row_3 == 0)
-        input = '6';
-    else if (column_3 == 0 && row_2 == 0)
-        input = '7';
-    else if (column_2 == 0 && row_2 == 0)
-        input = '8';
-    else if (column_1 == 0 && row_2 == 0)
-        input = '9';
-    else if (column_3 == 0 && row_1 == 0)
-        input = '*';
-    else if (column_2 == 0 && row_1 == 0)
-        input = '0';
-    else
-        input = '#';
-    return input;
+    char input;
+    do
+    {
+        digital_out_00.write(column_1);
+        digital_out_01.write(column_2);
+        digital_out_02.write(column_3);
+        row_1 = digital_in_00.read();
+        row_2 = digital_in_01.read();
+        row_3 = digital_in_02.read();
+        row_4 = digital_in_03.read();
+        if (column_3 == 0 && row_4 == 0)
+            input = '1';
+        else if (column_2 == 0 && row_4 == 0)
+            input = '2';
+        else if (column_1 == 0 && row_4 == 0)
+            input = '3';
+        else if (column_3 == 0 && row_3 == 0)
+            input = '4';
+        else if (column_2 == 0 && row_3 == 0)
+            input = '5';
+        else if (column_1 == 0 && row_3 == 0)
+            input = '6';
+        else if (column_3 == 0 && row_2 == 0)
+            input = '7';
+        else if (column_2 == 0 && row_2 == 0)
+            input = '8';
+        else if (column_1 == 0 && row_2 == 0)
+            input = '9';
+        else if (column_3 == 0 && row_1 == 0)
+            input = '*';
+        else if (column_2 == 0 && row_1 == 0)
+            input = '0';
+        else
+            input = '#';
+        ThisThread::sleep_for(INPUT_SENSITIVITY);
+        if (row_1 * row_2 * row_3 * row_4 == 0)
+        {
+            if (input == '#')
+            {
+                input_buffer = input;
+                return '#';
+            }
+            else if (input == '*')
+            {
+                input_buffer = input;
+                return '*';
+            }
+            else
+            {
+                if (input != input_buffer)
+                {
+                    timer_input.reset();
+                    input_buffer = input;
+                    return input;
+                }
+                else
+                {
+                    timer_input_end = timer_input.elapsed_time().count();
+                    timer_input.reset();
+                    timer_input.start();
+                    if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
+                    {
+                        return input;
+                    }
+                    timer_input_begin = timer_input.elapsed_time().count();
+                }
+            }
+        }
+    } while (1);
 }
 
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter)
@@ -75,6 +111,8 @@ void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter
 
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
 {
+    led_green = 1;
+    led_red = 1;
     if (input_counter >= 4)
     {
         for (int i = 0; i < 4; i++)
