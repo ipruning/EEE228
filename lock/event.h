@@ -1,9 +1,9 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+#include <string>
 #include "bsp.h"
 #include "config.h"
-#include <string>
 
 extern DigitalIn digital_in_00;
 extern DigitalIn digital_in_01;

@@ -17,10 +17,8 @@ DigitalOut led_red(LED2);
 SLCD display;
 
 // init Timer
-
 Timer timer_input;
 
 // init Ticker
-
 Ticker ticker_scan_column;
 Ticker ticker_led;

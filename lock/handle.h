@@ -6,14 +6,6 @@
 #include "config.h"
 #include "event.h"
 
-extern Timer timer_input;
-
-extern int row_1, row_2, row_3, row_4;
-
-extern char input_buffer;
-extern long timer_input_begin;
-extern long timer_input_end;
-
 char GetInput(void);
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
