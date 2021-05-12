@@ -48,14 +48,6 @@ brief:
 param:      
 return:     
 */
-char GetInputTest(void);
-
-/*
-function    
-brief:      
-param:      
-return:     
-*/
 void ToggleGreenLED(void);
 
 /*

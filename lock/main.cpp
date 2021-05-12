@@ -13,7 +13,7 @@ int main()
 
     while (true)
     {
-        PW1.user_input = GetInputTest();
+        PW1.user_input = GetInput();
         switch (PW1.user_input)
         {
         case '#':

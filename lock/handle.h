@@ -183,48 +183,23 @@ int PW::GetUserInputBuffer(void)
     while (true)
     {
         user_input = GetInput();
-        ThisThread::sleep_for(INPUT_SENSITIVITY);
-        if (row_1 * row_2 * row_3 * row_4 == 0)
+        switch (user_input)
         {
-            if (user_input == '#')
+        case '#':
+            return 0;
+            break;
+        case '*':
+            ResetUserInputBuffer();
+            DisplayInput(user_input_buffer, user_input_counter);
+            break;
+        default:
+            if (user_input_counter >= MAX_PW_LENGTH)
             {
-                // ticker_scan_column.detach();
-                return 0;
+                user_input_counter = MAX_PW_LENGTH;
             }
-            else if (user_input == '*')
-            {
-                ResetUserInputBuffer();
-                DisplayInput(user_input_buffer, user_input_counter);
-            }
-            else
-            {
-                if (user_input != user_input_buffer[0])
-                {
-                    if (user_input_counter >= MAX_PW_LENGTH)
-                    {
-                        user_input_counter = MAX_PW_LENGTH; // #TODO
-                    }
-                    AppendBuffer(user_input_buffer, user_input, &user_input_counter);
-                    DisplayInput(user_input_buffer, user_input_counter);
-                    timer_input.reset();
-                }
-                else
-                {
-                    timer_input_end = timer_input.elapsed_time().count();
-                    timer_input.reset();
-                    timer_input.start();
-                    if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
-                    {
-                        if (user_input_counter >= MAX_PW_LENGTH)
-                        {
-                            user_input_counter = 0;
-                        }
-                        AppendBuffer(user_input_buffer, user_input, &user_input_counter);
-                        DisplayInput(user_input_buffer, user_input_counter);
-                    }
-                    timer_input_begin = timer_input.elapsed_time().count();
-                }
-            }
+            AppendBuffer(user_input_buffer, user_input, &user_input_counter);
+            DisplayInput(user_input_buffer, user_input_counter);
+            break;
         }
     }
 }

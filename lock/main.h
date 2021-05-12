@@ -7,18 +7,11 @@
 #include "event.h"
 #include "handle.h"
 
-extern int row_1, row_2, row_3, row_4;
-extern long timer_input_begin;
-extern long timer_input_end;
-
-extern Timer timer_input;
-
 extern Ticker ticker_scan_column;
 extern Ticker ticker_led;
 
 void ScanColumn(void);
 char GetInput(void);
-char GetInputTest(void);
 void ToggleGreenLED(void);
 void ToggleRedLED(void);
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
