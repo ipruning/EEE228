@@ -23,10 +23,10 @@ int main()
                     // DisplayString("PRESS # TO CHANGE PASSWORD");
                     // DisplayString("PRESS OTHER TO CHANGE PW");
                     PW1.GetUserInputBuffer();
-                    if (PW1.CheckPassword())
+                    if (PW1.CheckPasswordAdministrator())
                     {
                         DisplayString("PLEASE INPUT NEW PW");
-                        ticker_led.attach(FlashGreenLED, 100ms);
+                        ticker_led.attach(ToggleGreenLED, 100ms);
                         PW1.GetUserInputBuffer();
                         PW1.UpdatePassword();
                         DisplayString("DONE");
@@ -36,7 +36,7 @@ int main()
                     }
                     else
                     {
-                        ticker_led.attach(FlashRedLED, 100ms);
+                        ticker_led.attach(ToggleRedLED, 100ms);
                         DisplayString("WRONG");
                         PW1.ResetUserInput();
                         DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
@@ -47,7 +47,7 @@ int main()
                 {
                     if (PW1.CheckPassword())
                     {
-                        ticker_led.attach(FlashGreenLED, 100ms);
+                        ticker_led.attach(ToggleGreenLED, 100ms);
                         DisplayString("PASS");
                         PW1.ResetUserInput();
                         DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
@@ -56,7 +56,7 @@ int main()
                     }
                     else
                     {
-                        ticker_led.attach(FlashRedLED, 100ms);
+                        ticker_led.attach(ToggleRedLED, 100ms);
                         DisplayString("FAILED");
                         PW1.ResetUserInput();
                         DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
@@ -65,7 +65,7 @@ int main()
                 }
                 else
                 {
-                    ticker_led.attach(FlashRedLED, 100ms);
+                    ticker_led.attach(ToggleRedLED, 100ms);
                     DisplayString("Please try again later");
                     ThisThread::sleep_for(PW_FALSE_SELLP_PERIOD);
                     PW1.ResetUserInput();

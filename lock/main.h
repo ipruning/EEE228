@@ -29,6 +29,7 @@ class PW
 {
 public:
     bool CheckPassword(void);
+    bool CheckPasswordAdministrator(void);
     void UpdatePassword(void);
     void UpdatePasswordHash(char[]);
     void ResetUserInput(void);
@@ -45,14 +46,18 @@ public:
 
 private:
     char password[MAX_PW_LENGTH];
+    char password_administrator[MAX_PW_LENGTH];
+    int password_lifetime; // Password expiration
     char salt[11];
 };
 
 PW::PW(void)
 {
-    char password_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
+    char password_administrator_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
+    strcpy(password_administrator, password_administrator_default);
+    char password_default[MAX_PW_LENGTH] = {'5', '4', '3', '2', '1'};
     strcpy(password, password_default);
-    password_length = 4;
+    password_length = 5;
     user_check_counter = 0;
     // strcpy(salt, "jf7@qLy_u6Q*");
     // UpdatePasswordHash(password_default, password_length);
@@ -75,6 +80,44 @@ bool PW::CheckPassword(void)
         for (int i = 0; i < password_length; i++)
         {
             if (temp[i] != password[i])
+            {
+                user_check_counter++;
+                return false;
+            }
+        }
+        user_check_counter = 0;
+        return true;
+    }
+    // else
+    // {
+    //     if (GetHash(temp, user_input_counter) == password_hash)
+    //     {
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
+}
+
+bool PW::CheckPasswordAdministrator(void)
+{
+    if (MAX_PW_LENGTH != user_input_counter) // Administrator password length is MAX_PW_LENGTH
+    {
+        user_check_counter++;
+        return false;
+    }
+    else
+    {
+        char temp[MAX_PW_LENGTH] = {0};
+        for (int i = 0; i < user_input_counter; i++)
+        {
+            temp[i] = user_input_buffer[user_input_counter - 1 - i];
+        }
+        for (int i = 0; i < password_length; i++)
+        {
+            if (temp[i] != password_administrator[i])
             {
                 user_check_counter++;
                 return false;
