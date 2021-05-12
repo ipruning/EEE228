@@ -18,6 +18,7 @@ extern Ticker ticker_led;
 
 void ScanColumn(void);
 char GetInput(void);
+char GetInputTest(void);
 void ToggleGreenLED(void);
 void ToggleRedLED(void);
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);

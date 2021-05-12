@@ -17,4 +17,9 @@ extern DigitalOut led_red;
 
 extern SLCD display;
 
+extern Timer timer_input;
+
+extern Ticker ticker_scan_column;
+extern Ticker ticker_led;
+
 #endif

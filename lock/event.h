@@ -16,9 +16,15 @@ extern DigitalOut digital_out_02;
 extern DigitalOut led_green;
 extern DigitalOut led_red;
 
+extern Timer timer_input;
+
 int column_1, column_2, column_3;
 int row_1, row_2, row_3, row_4;
 char output[] = "0000"; // 输出给屏幕的四位默认为 0
+
+char input_buffer = '@';
+long timer_input_begin = 0;
+long timer_input_end = 0;
 
 /*
 function    
@@ -35,6 +41,14 @@ param:
 return:     
 */
 char GetInput(void);
+
+/*
+function    
+brief:      
+param:      
+return:     
+*/
+char GetInputTest(void);
 
 /*
 function    

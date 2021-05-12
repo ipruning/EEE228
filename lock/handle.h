@@ -6,15 +6,13 @@
 #include "config.h"
 #include "event.h"
 
-extern Ticker ticker_scan_column;
-extern Ticker ticker_led;
-
 extern Timer timer_input;
 
 extern int row_1, row_2, row_3, row_4;
 
-long timer_input_begin = 0;
-long timer_input_end = 0;
+extern char input_buffer;
+extern long timer_input_begin;
+extern long timer_input_end;
 
 char GetInput(void);
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
