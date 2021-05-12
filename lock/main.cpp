@@ -2,8 +2,6 @@
 
 int main()
 {
-    ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
-
     char user_password_administrator_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
     char user_password_default[MAX_PW_LENGTH] = {'5', '4', '3', '2', '1'};
     PW PW1(user_password_administrator_default, user_password_default);
@@ -19,13 +17,13 @@ int main()
         case '#':
             if (PW1.user_input_counter == 0)
             {
-                DisplayString("PRESS INPUT AD PW"); // Administrator Password
-                PW1.GetUserInputBuffer();
+                DisplayString("PLEASE INPUT AD PW"); // Administrator Password
+                PW1.UpdatePasswordFromUserInput();
                 if (PW1.CheckPasswordAdministrator())
                 {
                     DisplayString("PLEASE INPUT NEW PW");
                     ticker_led.attach(ToggleGreenLED, 100ms);
-                    PW1.GetUserInputBuffer();
+                    PW1.UpdatePasswordFromUserInput();
                     PW1.UpdatePassword();
                     DisplayString("DONE");
                     ticker_led.detach();
@@ -35,7 +33,7 @@ int main()
                 else
                 {
                     ticker_led.attach(ToggleRedLED, 100ms);
-                    DisplayString("WRONG");
+                    DisplayString("FAILED");
                     ticker_led.detach();
                     PW1.ResetUserInputBuffer();
                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
@@ -79,7 +77,7 @@ int main()
         default:
             if (PW1.user_input_counter >= MAX_PW_LENGTH)
             {
-                PW1.user_input_counter = MAX_PW_LENGTH; // #TODO
+                PW1.user_input_counter = MAX_PW_LENGTH; // Preventing input overflow
             }
             AppendBuffer(PW1.user_input_buffer, PW1.user_input, &PW1.user_input_counter);
             DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);

@@ -18,31 +18,29 @@ public:
     bool CheckPasswordAdministrator(void);
     void UpdatePassword(void);
     void UpdatePasswordHash(char[]);
-    void ResetUserInputBuffer(void);
-    int GetUserInputBuffer(void);
+    bool UpdatePasswordFromUserInput(void);
     size_t GetHash(char[], int);
-    PW(char password_administrator_default[MAX_PW_LENGTH], char password_default[MAX_PW_LENGTH]);
+    void ResetUserInputBuffer(void);
 
-    int user_input;         // 用户输入
-    int user_input_counter; // 用户输入位数
-    int user_check_counter; // 用户误输次数
-    char user_input_buffer[MAX_PW_LENGTH];
-    int password_length;
-    size_t password_hash;
-    PW();
+    int user_input;                        // 用户输入
+    int user_input_counter;                // 用户输入位数
+    int user_check_counter;                // 用户误输次数
+    char user_input_buffer[MAX_PW_LENGTH]; //
+    int password_length;                   //
+    size_t password_hash;                  //
+
+    PW(char password_administrator_default[MAX_PW_LENGTH], char password_default[MAX_PW_LENGTH]); // PW() Constructor
 
 private:
-    char password[MAX_PW_LENGTH];
-    char password_administrator[MAX_PW_LENGTH];
-    int password_lifetime; // Password expiration
-    char salt[11];
+    char password[MAX_PW_LENGTH];               // Password
+    char password_administrator[MAX_PW_LENGTH]; // Administrator Password
+    int password_lifetime;                      // Password expiration
+    char salt[11];                              // Salt for Hash
 };
 
 PW::PW(char password_administrator_default[MAX_PW_LENGTH], char password_default[MAX_PW_LENGTH])
 {
-    // char password_administrator_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
     strcpy(password_administrator, password_administrator_default);
-    // char password_default[MAX_PW_LENGTH] = {'5', '4', '3', '2', '1'};
     strcpy(password, password_default);
     password_length = 5;
     user_check_counter = 0;
@@ -145,6 +143,35 @@ void PW::UpdatePasswordHash(char input[MAX_PW_LENGTH])
     password_hash = GetHash(input, password_length);
 }
 
+bool PW::UpdatePasswordFromUserInput(void)
+{
+    DisplayString("GO");
+    ResetUserInputBuffer();
+    DisplayInput(user_input_buffer, user_input_counter);
+    while (true)
+    {
+        user_input = GetInput();
+        switch (user_input)
+        {
+        case '#':
+            return true;
+            break;
+        case '*':
+            ResetUserInputBuffer();
+            DisplayInput(user_input_buffer, user_input_counter);
+            break;
+        default:
+            if (user_input_counter >= MAX_PW_LENGTH)
+            {
+                user_input_counter = MAX_PW_LENGTH;
+            }
+            AppendBuffer(user_input_buffer, user_input, &user_input_counter);
+            DisplayInput(user_input_buffer, user_input_counter);
+            break;
+        }
+    }
+}
+
 size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
 {
     std::string str;
@@ -163,36 +190,6 @@ void PW::ResetUserInputBuffer(void)
     for (int i = 0; i < MAX_PW_LENGTH; i++)
     {
         user_input_buffer[i] = '0';
-    }
-}
-
-int PW::GetUserInputBuffer(void)
-{
-    // ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
-    DisplayString("GO");
-    ResetUserInputBuffer();
-    DisplayInput(user_input_buffer, user_input_counter);
-    while (true)
-    {
-        user_input = GetInput();
-        switch (user_input)
-        {
-        case '#':
-            return 0;
-            break;
-        case '*':
-            ResetUserInputBuffer();
-            DisplayInput(user_input_buffer, user_input_counter);
-            break;
-        default:
-            if (user_input_counter >= MAX_PW_LENGTH)
-            {
-                user_input_counter = MAX_PW_LENGTH;
-            }
-            AppendBuffer(user_input_buffer, user_input, &user_input_counter);
-            DisplayInput(user_input_buffer, user_input_counter);
-            break;
-        }
     }
 }
 
