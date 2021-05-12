@@ -6,7 +6,7 @@ int main()
 
     char user_password_administrator_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
     char user_password_default[MAX_PW_LENGTH] = {'5', '4', '3', '2', '1'};
-    PW PW1 (user_password_administrator_default, user_password_default);
+    PW PW1(user_password_administrator_default, user_password_default);
 
     PW1.ResetUserInputBuffer();
     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);

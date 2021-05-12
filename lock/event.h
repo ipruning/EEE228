@@ -12,6 +12,7 @@ extern DigitalIn digital_in_03;
 extern DigitalOut digital_out_00;
 extern DigitalOut digital_out_01;
 extern DigitalOut digital_out_02;
+
 extern DigitalOut led_green;
 extern DigitalOut led_red;
 
@@ -67,8 +68,20 @@ return:
 */
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
 
+/*
+function    
+brief:      
+param:      
+return:     
+*/
 void DisplayString(string input_string);
 
+/*
+function    
+brief:      
+param:      
+return:     
+*/
 void FlashOperation(void);
 
 #endif

@@ -6,18 +6,20 @@
 #include "config.h"
 #include "event.h"
 
-char GetInput(void);
-void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
-void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
-void DisplayString(string input_string);
-void FlashOperation(void);
+extern Ticker ticker_scan_column;
+extern Ticker ticker_led;
+
+extern Timer timer_input;
 
 extern int row_1, row_2, row_3, row_4;
 
 long timer_input_begin = 0;
 long timer_input_end = 0;
 
-Timer timer_input;
+char GetInput(void);
+void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
+void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
+void DisplayString(string input_string);
 
 class PW
 {

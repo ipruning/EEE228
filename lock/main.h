@@ -12,8 +12,9 @@ extern long timer_input_begin;
 extern long timer_input_end;
 
 extern Timer timer_input;
-Ticker ticker_scan_column;
-Ticker ticker_led;
+
+extern Ticker ticker_scan_column;
+extern Ticker ticker_led;
 
 void ScanColumn(void);
 char GetInput(void);
