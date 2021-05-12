@@ -28,7 +28,7 @@ void ScanColumn(void)
 
 char GetInput(void)
 {
-    int input;
+    char input;
     digital_out_00.write(column_1);
     digital_out_01.write(column_2);
     digital_out_02.write(column_3);
