@@ -18,6 +18,8 @@ extern DigitalOut led_red;
 
 extern Timer timer_input;
 
+extern Ticker ticker_scan_column;
+
 int column_1, column_2, column_3;
 int row_1, row_2, row_3, row_4;
 char output[] = "0000"; // 输出给屏幕的四位默认为 0

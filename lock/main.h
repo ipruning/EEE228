@@ -7,7 +7,6 @@
 #include "event.h"
 #include "handle.h"
 
-extern Ticker ticker_scan_column;
 extern Ticker ticker_led;
 
 void ScanColumn(void);
