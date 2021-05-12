@@ -75,15 +75,6 @@ int main()
                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
                     PW1.user_check_counter = 0;
                 }
-                // display.clear();
-                // display.Home();
-                // // int tempint = PW1.password_hash % 10000;
-                // // display.printf("%d", tempint);
-                // // display.printf("%d", PW1.password_hash);
-                // display.printf("%c", PW1.user_input_buffer[3]);
-                // // display.printf("%d", PW1.user_input_counter);
-                // ThisThread::sleep_for(1000ms);
-                // PW1.user_input_counter = 0;
             }
             else if (PW1.user_input == '*')
             {
