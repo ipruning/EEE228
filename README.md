@@ -45,7 +45,7 @@ $ mbed compile -m KL46Z -t GCC_ARM
 ### 2.0 Overall
 
 | Module | Location | Function | Location |
-|:---:|---|---|:---:|
+|:---|:---|:---|:---:|
 | `config.h` | `/lock/config.h` | Environment variables | [🔗](/lock/config.h) |
 | `bsp.h` | `/lock/config.h` | Board support package | [🔗](/lock/bsp.h) |
 | `bsp.cpp` | `/lock/config.h` | The board support package is used to store the code required for the initialisation of the board. | [🔗](/lock/bsp.cpp) |
