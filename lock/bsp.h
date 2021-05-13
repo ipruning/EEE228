@@ -11,9 +11,15 @@ extern DigitalIn digital_in_03;
 extern DigitalOut digital_out_00;
 extern DigitalOut digital_out_01;
 extern DigitalOut digital_out_02;
+
 extern DigitalOut led_green;
 extern DigitalOut led_red;
 
 extern SLCD display;
+
+extern Timer timer_input;
+
+extern Ticker ticker_scan_column;
+extern Ticker ticker_led;
 
 #endif
