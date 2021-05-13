@@ -5,6 +5,7 @@
 #include "bsp.h"
 #include "config.h"
 
+// Pins
 extern DigitalIn digital_in_00;
 extern DigitalIn digital_in_01;
 extern DigitalIn digital_in_02;
@@ -13,84 +14,59 @@ extern DigitalOut digital_out_00;
 extern DigitalOut digital_out_01;
 extern DigitalOut digital_out_02;
 
+// LEDs
 extern DigitalOut led_green;
 extern DigitalOut led_red;
 
+// Timer
 extern Timer timer_input;
 
+// Ticker
 extern Ticker ticker_scan_column;
 
-int column_1, column_2, column_3;
-int row_1, row_2, row_3, row_4;
-char output[] = "0000"; // The four bits output to the display defaults to 0
+// Keypad
+int column_1, column_2, column_3; // For controlling the Keypad
+int row_1, row_2, row_3, row_4;   // For controlling the Keypad
 
-char input_buffer = '@';
-long timer_input_begin = 0;
-long timer_input_end = 0;
+// GetInput()
+char input_buffer = '@';    // Used in GetInput() to record the last user input
+long timer_input_begin = 0; // Used in GetInput() to record the time
+long timer_input_end = 0;   // Used in GetInput() to record the time
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** This function will be bound to the Ticker to drive the Keypad
  */
 void ScanColumn(void);
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** Get the user's single input from the keyboard.
+ * @return Characters entered by the user
  */
 char GetInput(void);
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** ToggleGreenLED
  */
 void ToggleGreenLED(void);
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** ToggleRedLED
  */
 void ToggleRedLED(void);
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** Put the input into an array with all the array elements shifted backwards one place.
+ * @param input_array Arrays to hold new data
+ * @param input User input
+ * @param input_counter Length of the password already entered by the user
  */
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** Show the array to the display.
+ * @param input_array Arrays to hold new data
+ * @param input_counter Length of the password already entered by the user
  */
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
 
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
+/** Scroll the string on the display
+ * @param input_string string displayed on the monitor
  */
 void DisplayString(string input_string);
-
-/** 
- * function    
- * brief:      
- * param:      
- * return:     
- */
-void FlashOperation(void);
 
 /** Make the buzzer rings
  *
@@ -111,19 +87,19 @@ void ExitButtonLED_Toggle(void);
  * @param buffer An array that include the flag bit.
  * @return An array that include the flag bit and the state of this door stike.
  */
-int *WiFi_transmit(int *buffer);
+int *WiFiTransmit(int *buffer);
 
 /** Make the door strike open
  *
  * It will send the high level signal to switch on the relay to open the door strike.
  */
-void Doorstrike_Open(void);
+void DoorstrikeOpen(void);
 
 /** Make the door strike close
  *
  * It will send the low level signal to switch off the relay to close the door strike.
  */
-void Doorstrike_Close(void);
+void DoorstrikeClose(void);
 
 /** Write the code into flash
  *
@@ -131,7 +107,7 @@ void Doorstrike_Close(void);
  * @param buffer The pointer to the code buffer array.
  * @param address The address of the code array in flash.
  */
-void Flash_Write(int *buffer, int address);
+void FlashWrite(int *buffer, int address);
 
 /** Read the code from flash
  *
@@ -139,6 +115,10 @@ void Flash_Write(int *buffer, int address);
  * @param address The adress of the code array in flash.
  * @return The pointer to the code buffer array.
  */
-int *Flash_Read(int address);
+int *FlashRead(int address);
+
+/** Flash test
+ */
+void FlashOperation(void);
 
 #endif

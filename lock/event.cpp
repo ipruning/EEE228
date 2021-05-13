@@ -115,6 +115,7 @@ void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter
 
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
 {
+    char output[] = "0000"; // The four bits output to the display defaults to 0
     led_green = 1;
     led_red = 1;
     if (input_counter >= 4)
