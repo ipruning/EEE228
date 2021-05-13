@@ -55,6 +55,7 @@ int main()
                     ticker_led.detach();
                     PW1.ResetUserInputBuffer();
                     DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
+                    // #TODO 需要添加开门的函数
                 }
                 else
                 {
