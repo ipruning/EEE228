@@ -19,11 +19,19 @@
 
 ### 1.0 Install
 
-#TODO
+- Clone GitHub Repository `git clone https://github.com/Spehhhhh/EEE228.git`
+- Switch to the directory `cd EEE228`
 
 ### 1.1 Usage
 
-#TODO
+You can build the project with all supported Mbed OS build tools.
+
+```bash
+$ cd EEE228/lock
+$ mbed deploy
+$ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash
+$ mbed compile -m KL46Z -t GCC_ARM
+```
 
 ### 1.2 Name Convention
 
@@ -36,11 +44,23 @@
 
 ### 2.0 Overall
 
-#TODO
+| Module | Location | Function | Location |
+|:---:|---|---|:---:|
+| `config.h` | `/lock/config.h` | Environment variables | [🔗](/lock/config.h) |
+| `bsp.h` | `/lock/config.h` | Board support package | [🔗](/lock/bsp.h) |
+| `bsp.cpp` | `/lock/config.h` | The board support package is used to store the code required for the initialisation of the board. | [🔗](/lock/bsp.cpp) |
+| `event.h` | `/lock/config.h` | Event | [🔗](/lock/event.h) |
+| `event.cpp` | `/lock/config.h` | Store the functions that will be called as Event. | [🔗](/lock/event.cpp) |
+| `handle.h` | `/lock/config.h` | Store PW Class | [🔗](/lock/handle.h) |
+| `main.h` | `/lock/main.cpp` | Main program | [🔗](/lock/main.) |
+| `main.cpp` | `/lock/main.cpp` | Main program | [🔗](/lock/main.cpp) |
+| `tests` | `/lock/tests` | Storing unit tests | [🔗](/lock/tests) |
 
 ### 2.1 Class
 
-#TODO
+| Class | Function |
+|---|---|
+| `PW` | Used to control password |
 
 ## 3. License
 
@@ -53,4 +73,5 @@
 
 ## 5. ChangeLog
 
+- 210513 fix Usage
 - 210420 init
