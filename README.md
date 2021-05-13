@@ -11,6 +11,7 @@
   - [2. Architecture](#2-architecture)
     - [2.0 Overall](#20-overall)
     - [2.1 Class](#21-class)
+    - [2.2 Interface](#22-interface)
   - [3. License](#3-license)
   - [4. External Link](#4-external-link)
   - [5. ChangeLog](#5-changelog)
@@ -61,6 +62,38 @@ $ mbed compile -m KL46Z -t GCC_ARM
 | Class | Function |
 |---|---|
 | `PW` | Used to control password |
+
+### 2.2 Interface
+
+| Peripheral            | Interface | Type       |
+| --------------------- | --------- | ---------- |
+| Relay control         | PTA0      | Digital IO |
+| Buzzer control        | PTA6      | PWM        |
+| Exit button green LED | PTA13     | Digital IO |
+| Exit button red LED   | PTA14     | Digital IO |
+| Exit button COM_TX    | PTE1      | USART1     |
+| Exit button COM_RX    | PTE0      | USART1     |
+| ESP8266 COM_TX        | PTE23     | USART2     |
+| ESP8266 COM_RX        | PTE22     | USART2     |
+| Keypad Micro D6       | PTA12     | Digital IO |
+| Keypad Micro D5       | PTA4      | Digital IO |
+| Keypad Micro D4       | PTA5      | Digital IO |
+| Keypad Micro D3       | PTC8      | Digital IO |
+| Keypad Micro D2       | PTD3      | Digital IO |
+| Keypad Micro D1       | PTA2      | Digital IO |
+| Keypad Micro D0       | PTA1      | Digital IO |
+| LCD_P40               | PTD0      | Digital IO |
+| LCD_P52               | PTE4      | Digital IO |
+| LCD_P19               | PTB23     | Digital IO |
+| LCD_P18               | PTB22     | Digital IO |
+| LCD_P37               | PTC17     | Digital IO |
+| LCD_P17               | PTB21     | Digital IO |
+| LCD_P7                | PTB7      | Digital IO |
+| LCD_P8                | PTB8      | Digital IO |
+| LCD_P53               | PTE5      | Digital IO |
+| LCD_P38               | PTC18     | Digital IO |
+| LCD_P10               | PTB10     | Digital IO |
+| LCD_P11               | PTB11     | Digital IO |
 
 ## 3. License
 
