@@ -17,32 +17,37 @@ public:
     bool CheckPassword(void);
     bool CheckPasswordAdministrator(void);
     void UpdatePassword(void);
+    void UpdatePasswordAdministrator(void);
     void UpdatePasswordHash(char[]);
-    void ResetUserInputBuffer(void);
-    int GetUserInputBuffer(void);
+    bool UpdatePasswordFromUserInputToBuffer(void);
     size_t GetHash(char[], int);
-    PW(char password_administrator_default[MAX_PW_LENGTH], char password_default[MAX_PW_LENGTH]);
+    void ResetUserInputBuffer(void);
 
-    int user_input;         // 用户输入
-    int user_input_counter; // 用户输入位数
-    int user_check_counter; // 用户误输次数
-    char user_input_buffer[MAX_PW_LENGTH];
-    int password_length;
-    size_t password_hash;
-    PW();
+    char user_input;                       // The single character currently entered by the user
+    char user_input_buffer[MAX_PW_LENGTH]; //
+    int user_input_counter;                // Length of user-entered password
+    int user_check_counter;                // Number of times a user has entered a password incorrectly
+
+    int password_length;                // Length of password
+    size_t password_hash;               // Hash of password
+    size_t password_administrator_hash; // Hash of password
+
+    PW(char password_administrator_default[MAX_PW_LENGTH], char password_default[MAX_PW_LENGTH]); // PW() Constructor
 
 private:
-    char password[MAX_PW_LENGTH];
-    char password_administrator[MAX_PW_LENGTH];
-    int password_lifetime; // Password expiration
-    char salt[11];
+    char password[MAX_PW_LENGTH];               // Password
+    char password_administrator[MAX_PW_LENGTH]; // Administrator Password
+    int password_lifetime;                      // Password expiration
+    char salt[11];                              // Salt for Hash
 };
 
+/** PW Class Constructor
+ * @param password_administrator_default Default password
+ * @param password_default Default password
+ */
 PW::PW(char password_administrator_default[MAX_PW_LENGTH], char password_default[MAX_PW_LENGTH])
 {
-    // char password_administrator_default[MAX_PW_LENGTH] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '9'};
     strcpy(password_administrator, password_administrator_default);
-    // char password_default[MAX_PW_LENGTH] = {'5', '4', '3', '2', '1'};
     strcpy(password, password_default);
     password_length = 5;
     user_check_counter = 0;
@@ -50,6 +55,9 @@ PW::PW(char password_administrator_default[MAX_PW_LENGTH], char password_default
     // UpdatePasswordHash(password_default, password_length);
 }
 
+/** Check that the password is correct (compare to PW.password[]).
+ * @return When True is returned, the password is correct.
+ */
 bool PW::CheckPassword(void)
 {
     if (password_length != user_input_counter)
@@ -88,6 +96,9 @@ bool PW::CheckPassword(void)
     // }
 }
 
+/** Check that the password is correct (compare to PW.password_administrator[]).
+ * @return When True is returned, the password is correct.
+ */
 bool PW::CheckPasswordAdministrator(void)
 {
     if (MAX_PW_LENGTH != user_input_counter) // Administrator password length is MAX_PW_LENGTH
@@ -126,6 +137,8 @@ bool PW::CheckPasswordAdministrator(void)
     // }
 }
 
+/** Save the passwords in the buffer to password array.
+ */
 void PW::UpdatePassword(void)
 {
     char temp[MAX_PW_LENGTH] = {0};
@@ -140,11 +153,35 @@ void PW::UpdatePassword(void)
     password_length = user_input_counter;
 }
 
+/** Save the passwords in the buffer to password_administrator array.
+ */
+void PW::UpdatePasswordAdministrator(void)
+{
+    char temp[MAX_PW_LENGTH] = {0};
+    for (int i = 0; i < user_input_counter; i++)
+    {
+        temp[i] = user_input_buffer[user_input_counter - 1 - i];
+    }
+    for (int i = 0; i < user_input_counter; i++)
+    {
+        password_administrator[i] = temp[i];
+    }
+    password_length = user_input_counter;
+}
+
+/** Save the hash of the password to the class.
+ * @param input array
+ */
 void PW::UpdatePasswordHash(char input[MAX_PW_LENGTH])
 {
     password_hash = GetHash(input, password_length);
 }
 
+/** Convert the input array to Hash with salt.
+ * @param input Array
+ * @param input_length Array length
+ * @return hash
+ */
 size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
 {
     std::string str;
@@ -157,6 +194,8 @@ size_t PW::GetHash(char input[MAX_PW_LENGTH], int input_length)
     return hash1;
 }
 
+/** Reset UserInputBuffer    
+ */
 void PW::ResetUserInputBuffer(void)
 {
     user_input_counter = 0;
@@ -166,9 +205,11 @@ void PW::ResetUserInputBuffer(void)
     }
 }
 
-int PW::GetUserInputBuffer(void)
+/** UpdatePasswordFromUserInputToBuffer -> Save the input to the buffer
+ * @return Quit the function when the user enters #.
+ */
+bool PW::UpdatePasswordFromUserInputToBuffer(void)
 {
-    // ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
     DisplayString("GO");
     ResetUserInputBuffer();
     DisplayInput(user_input_buffer, user_input_counter);
@@ -178,7 +219,7 @@ int PW::GetUserInputBuffer(void)
         switch (user_input)
         {
         case '#':
-            return 0;
+            return true;
             break;
         case '*':
             ResetUserInputBuffer();

@@ -28,6 +28,7 @@ void ScanColumn(void)
 
 char GetInput(void)
 {
+    ticker_scan_column.attach(ScanColumn, SCAN_COLUMN_PERIOD);
     char input;
     do
     {
@@ -68,11 +69,13 @@ char GetInput(void)
             if (input == '#')
             {
                 input_buffer = input;
+                ticker_scan_column.detach();
                 return '#';
             }
             else if (input == '*')
             {
                 input_buffer = input;
+                ticker_scan_column.detach();
                 return '*';
             }
             else
@@ -81,6 +84,7 @@ char GetInput(void)
                 {
                     timer_input.reset();
                     input_buffer = input;
+                    ticker_scan_column.detach();
                     return input;
                 }
                 else
@@ -111,6 +115,7 @@ void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter
 
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
 {
+    char output[] = "0000"; // The four bits output to the display defaults to 0
     led_green = 1;
     led_red = 1;
     if (input_counter >= 4)
