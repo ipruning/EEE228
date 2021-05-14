@@ -48,12 +48,12 @@ $ mbed compile -m KL46Z -t GCC_ARM
 | Module | Location | Function | Location |
 |:---|:---|:---|:---:|
 | `config.h` | `/lock/config.h` | Environment variables | [🔗](/lock/config.h) |
-| `bsp.h` | `/lock/config.h` | Board support package | [🔗](/lock/bsp.h) |
-| `bsp.cpp` | `/lock/config.h` | The board support package is used to store the code required for the initialisation of the board. | [🔗](/lock/bsp.cpp) |
-| `event.h` | `/lock/config.h` | Event | [🔗](/lock/event.h) |
-| `event.cpp` | `/lock/config.h` | Store the functions that will be called as Event. | [🔗](/lock/event.cpp) |
-| `handle.h` | `/lock/config.h` | Store PW Class | [🔗](/lock/handle.h) |
-| `main.h` | `/lock/main.cpp` | Main program | [🔗](/lock/main.) |
+| `bsp.h` | `/lock/bsp.h` | Board support package | [🔗](/lock/bsp.h) |
+| `bsp.cpp` | `/lock/bsp.cpp` | The board support package is used to store the code required for the initialisation of the board. | [🔗](/lock/bsp.cpp) |
+| `event.h` | `/lock/event.h` | Event | [🔗](/lock/event.h) |
+| `event.cpp` | `/lock/event.cpp` | Store the functions that will be called as Event. | [🔗](/lock/event.cpp) |
+| `handle.h` | `/lock/handle.h` | Store PW Class | [🔗](/lock/handle.h) |
+| `main.h` | `/lock/main.h` | Main program | [🔗](/lock/main.h) |
 | `main.cpp` | `/lock/main.cpp` | Main program | [🔗](/lock/main.cpp) |
 | `tests` | `/lock/tests` | Storing unit tests | [🔗](/lock/tests) |
 | `drivers` | `/lock/drivers` | Storing all drivers | [🔗](/lock/drivers) |
