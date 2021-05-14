@@ -186,3 +186,33 @@ void FlashOperation(void)
     int numbers[10] = {0, 1, 10, 100, 1000, 10000, 1000000, 10000000, 100000000, 1000000000};
     PW_Flash.program(numbers, address, 4096);
 }
+
+void Buzzer(void)
+{
+}
+
+void ExitButtonLED_Toggle(void)
+{
+}
+
+int *WiFiTransmit(int *buffer)
+{
+    return 0;
+}
+
+void DoorstrikeOpen(void)
+{
+}
+
+void DoorstrikeClose(void)
+{
+}
+
+void FlashWrite(int *buffer, int address)
+{
+}
+
+int *FlashRead(int address)
+{
+    return 0;
+}
