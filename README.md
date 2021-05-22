@@ -11,7 +11,8 @@
   - [2. Architecture](#2-architecture)
     - [2.0 Overall](#20-overall)
     - [2.1 Class](#21-class)
-    - [2.2 Interface](#22-interface)
+    - [2.2 Flowchart of Software](#22-flowchart-of-software)
+    - [2.3 Interface](#23-interface)
   - [3. License](#3-license)
   - [4. External Link](#4-external-link)
   - [5. ChangeLog](#5-changelog)
@@ -60,11 +61,13 @@ $ mbed compile -m KL46Z -t GCC_ARM
 
 ### 2.1 Class
 
-| Class | Function |
-|---|---|
-| `PW` | Used to control password |
+![](https://i.loli.net/2021/05/22/k3ETLHhpRXVeMYQ.png)
 
-### 2.2 Interface
+### 2.2 Flowchart of Software
+
+![](https://i.loli.net/2021/05/22/iVtYfdPw7mjoSB6.png)
+
+### 2.3 Interface
 
 | Peripheral            | Interface | Type       |
 | --------------------- | --------- | ---------- |
