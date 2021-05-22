@@ -5,7 +5,7 @@
 #include "bsp.h"
 #include "config.h"
 
-// Pins
+// Keypad Pins
 extern DigitalIn digital_in_00;
 extern DigitalIn digital_in_01;
 extern DigitalIn digital_in_02;
@@ -14,7 +14,7 @@ extern DigitalOut digital_out_00;
 extern DigitalOut digital_out_01;
 extern DigitalOut digital_out_02;
 
-// LEDs
+// LED Pins
 extern DigitalOut led_green;
 extern DigitalOut led_red;
 
