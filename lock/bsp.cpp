@@ -22,3 +22,7 @@ Timer timer_input;
 // init Ticker
 Ticker ticker_scan_column;
 Ticker ticker_led;
+
+// init Thread
+
+Thread thread_display;

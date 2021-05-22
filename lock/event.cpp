@@ -63,7 +63,12 @@ char GetInput(void)
             input = '0';
         else
             input = '#';
-        ThisThread::sleep_for(INPUT_SENSITIVITY);
+
+        for (int i = 0; i < INPUT_SENSITIVITY;) // ThisThread::sleep_for(INPUT_SENSITIVITY);
+        {
+            i++;
+        }
+
         if (row_1 * row_2 * row_3 * row_4 == 0)
         {
             if (input == '#')
@@ -80,24 +85,14 @@ char GetInput(void)
             }
             else
             {
-                if (input != input_buffer)
+                timer_input_end = timer_input.elapsed_time().count();
+                timer_input.reset();
+                timer_input.start();
+                if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
                 {
-                    timer_input.reset();
-                    input_buffer = input;
-                    ticker_scan_column.detach();
                     return input;
                 }
-                else
-                {
-                    timer_input_end = timer_input.elapsed_time().count();
-                    timer_input.reset();
-                    timer_input.start();
-                    if ((timer_input_end - timer_input_begin) > INPUT_INTERVAL)
-                    {
-                        return input;
-                    }
-                    timer_input_begin = timer_input.elapsed_time().count();
-                }
+                timer_input_begin = timer_input.elapsed_time().count();
             }
         }
     } while (1);
@@ -148,8 +143,8 @@ void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter)
 
 void DisplayString(string input_string)
 {
-    string display_string("   ");
-    display_string.append(input_string).append("   ");
+    string display_string("  ");
+    display_string.append(input_string).append("  ");
     int length = display_string.length();
 
     for (int i = 0; i < length - 3; i++)

@@ -11,6 +11,8 @@ void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
 void DisplayString(string input_string);
 
+extern Thread thread_display;
+
 class PW
 {
 public:
@@ -210,9 +212,19 @@ void PW::ResetUserInputBuffer(void)
  */
 bool PW::UpdatePasswordFromUserInputToBuffer(void)
 {
-    DisplayString("GO");
+    while (true)
+    {
+        if (GetInput() != '#')
+            break;
+    }
+    thread_display.terminate();   // terminate current thread object
+    thread_display.~Thread();     // destroy the local thread object
+    new (&thread_display) Thread; // create new
+
     ResetUserInputBuffer();
+    DisplayString("GO");
     DisplayInput(user_input_buffer, user_input_counter);
+
     while (true)
     {
         user_input = GetInput();
