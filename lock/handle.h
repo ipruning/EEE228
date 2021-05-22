@@ -6,13 +6,16 @@
 #include "config.h"
 #include "event.h"
 
+// Use the functions in Events.h
 char GetInput(void);
 void AppendBuffer(char input_array[MAX_PW_LENGTH], int input, int *input_counter);
 void DisplayInput(char input_array[MAX_PW_LENGTH], int input_counter);
 void DisplayString(string input_string);
 
+// Thread
 extern Thread thread_display;
 
+// PW Class
 class PW
 {
 public:
@@ -56,6 +59,8 @@ PW::PW(char password_administrator_default[MAX_PW_LENGTH], char password_default
     // strcpy(salt, "jf7@qLy_u6Q*");
     // UpdatePasswordHash(password_default, password_length);
 }
+
+// PW Class Methods
 
 /** Check that the password is correct (compare to PW.password[]).
  * @return When True is returned, the password is correct.

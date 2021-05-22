@@ -11,7 +11,6 @@
 extern Ticker ticker_led;
 
 // Thread
-
 extern Thread thread_display;
 
 // Function

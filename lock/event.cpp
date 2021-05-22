@@ -182,6 +182,8 @@ void FlashOperation(void)
     PW_Flash.program(numbers, address, 4096);
 }
 
+// Template
+
 void Buzzer(void)
 {
 }
