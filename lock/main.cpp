@@ -43,13 +43,13 @@ int main()
             if (PW1.user_input_counter == 0)
             {
                 thread_display.start(DisplayADInput);      // Please Input Administrator Password
-                PW1.UpdatePasswordFromUserInputToBuffer(); // Wait for the user to enter the administrator password
-                if (PW1.CheckPasswordAdministrator())      // Check that the password is correct
+                PW1.UpdatePasswordFromUserInputToBuffer(); // Wait for the user to enter the administrator password -> PW1.user_input_buffer[]
+                if (PW1.CheckPasswordAdministrator())      // Check that the password is correct (Compare PW1.user_input_buffer[] with PW1.password_administrator[])
                 {
                     thread_display.start(DisplayNewInput);                       // Prompt the user to enter
                     ticker_led.attach(ToggleGreenLED, 100ms);                    // Start flashing the green light
-                    PW1.UpdatePasswordFromUserInputToBuffer();                   // User input -> buffer[]
-                    PW1.UpdatePassword();                                        // buffer[] -> password[]
+                    PW1.UpdatePasswordFromUserInputToBuffer();                   // User input -> PW1.user_input_buffer[]
+                    PW1.UpdatePassword();                                        // PW1.user_input_buffer[] -> PW1.password[]
                     DisplayString("DONE");                                       //
                     ticker_led.detach();                                         // LED stops flashing
                     PW1.ResetUserInputBuffer();                                  // Reset
