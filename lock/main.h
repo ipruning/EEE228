@@ -24,17 +24,6 @@ void DisplayString(string input_string);
 void DoorstrikeOpen(void);
 
 // Functions used by thread_display
-void DisplayADInput(void)
-{
-    DisplayString("PLEASE INPUT ADMINISTRATOR PW");
-}
-
-void DisplayNewInput(void)
-{
-    DisplayString("PLEASE INPUT NEW PW");
-}
-
-void DisplayGo(void)
-{
-    DisplayString("Go");
-}
+void DisplayADInput(void) { DisplayString("PLEASE INPUT ADMINISTRATOR PW"); }
+void DisplayNewInput(void) { DisplayString("PLEASE INPUT NEW PW"); }
+void DisplayGo(void) { DisplayString("Go"); }

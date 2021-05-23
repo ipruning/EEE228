@@ -24,14 +24,14 @@ extern Timer timer_input;
 // Ticker
 extern Ticker ticker_scan_column;
 
-// Keypad
+// Used by ScanColumn()
 int column_1, column_2, column_3; // For controlling the Keypad
 int row_1, row_2, row_3, row_4;   // For controlling the Keypad
 
-// GetInput()
-char input_buffer = '@';    // Used in GetInput() to record the last user input
-long timer_input_begin = 0; // Used in GetInput() to record the time
-long timer_input_end = 0;   // Used in GetInput() to record the time
+// Used by GetInput()
+char input_buffer = '@';    // Used by GetInput() to record the last user input
+long timer_input_begin = 0; // Used by GetInput() to record the time
+long timer_input_end = 0;   // Used by GetInput() to record the time
 
 /** This function will be bound to the Ticker to drive the Keypad
  */

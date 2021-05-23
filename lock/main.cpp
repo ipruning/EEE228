@@ -11,11 +11,11 @@ int main()
 
     // During system initialization, if the password is not read from flash, prompt the user
     // DisplayString("PLEASE SET PW");                              // Prompt the user to enter
-    // ticker_led.attach(ToggleGreenLED, 100ms);                    // Start flashing the green light
+    // ticker_led.attach(ToggleGreenLED, 100ms);                    //
     // PW1.UpdatePasswordFromUserInputToBuffer();                   // User input -> buffer[]
     // PW1.UpdatePassword();                                        // buffer[] -> password[]
     // DisplayString("DONE");                                       //
-    // ticker_led.detach();                                         // LED stops flashing
+    // ticker_led.detach();                                         //
     // PW1.ResetUserInputBuffer();                                  // Reset
     // DisplayInput(PW1.user_input_buffer, PW1.user_input_counter); //
 
@@ -33,9 +33,12 @@ int main()
     while (true)
     {
         PW1.user_input = GetInput();
+
         switch (PW1.user_input)
         {
-        // When the user enters #, the program enters the password change logic assuming that the user has not entered it before. If the user has entered, the program checks that the password is correct.
+
+        // When the user enters #, the program enters the password change logic assuming that the user has not entered it before.
+        // If the user has entered, the program checks that the password is correct.
         case '#':
             if (PW1.user_input_counter == 0)
             {
@@ -92,11 +95,13 @@ int main()
                 PW1.user_check_counter = 0;
             }
             break;
+
         // Resets the input when the user enters *.
         case '*':
             PW1.ResetUserInputBuffer();
             DisplayInput(PW1.user_input_buffer, PW1.user_input_counter);
             break;
+
         // When the user enters 1-9 put the input into the buffer.
         default:
             if (PW1.user_input_counter >= MAX_PW_LENGTH)
