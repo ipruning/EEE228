@@ -61,11 +61,11 @@ $ mbed compile -m KL46Z -t GCC_ARM
 
 ### 2.1 Class
 
-![](https://i.loli.net/2021/05/22/k3ETLHhpRXVeMYQ.png)
+![Class Diagram](https://i.loli.net/2021/05/22/k3ETLHhpRXVeMYQ.png)
 
 ### 2.2 Flowchart of Software
 
-![](https://i.loli.net/2021/05/22/iVtYfdPw7mjoSB6.png)
+![Flowchart](https://i.loli.net/2021/05/22/iVtYfdPw7mjoSB6.png)
 
 ### 2.3 Interface
 
